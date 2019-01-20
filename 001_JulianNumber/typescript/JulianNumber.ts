@@ -24,18 +24,22 @@ export default class JulianNumber {
   }
   
   fromJulianNumber(julianNumber: number): Date {
-    const a: number = julianNumber + 68569
-    const b: number = ( 4 * a ) / 146097
-    const c: number = a - ( 146097 * b + 3 ) / 4
-    const d: number = ( 4000 * ( c + 1 ) ) / 1461001
-    const e: number = c - ( 1461 * d ) / 4 + 31
-    const f: number = ( 80 * e ) / 2447
-    const day: number = e - ( 2447 * f ) / 80
-    const g: number = f / 11
-    const month: number = f + 2 - ( 12 * g )
-    const year: number = 100 * ( b - 49 ) + d + g
-    
-    return new Date(year, month, day)
+    let l = Math.round(julianNumber + 68569)
+    const n = Math.round(( 4 * l ) / 146097)
+    l = l - Math.round(( 146097 * n + 3 ) / 4)
+    const i = Math.round(( 4000 * ( l + 1 ) ) / 1461001)
+    l = l - Math.round(( 1461 * i ) / 4 + 31)
+    const j = Math.round(( 80 * l ) / 2447)
+    const day = Math.round(l - ( 2447 * j ) / 80)
+    l = Math.round(j / 11)
+    const month = Math.round(j + 2 - ( 12 * l ))
+    const year = Math.round(100 * ( n - 49 ) + i + l)
+
+    return {
+      day: day,
+      month: month,
+      year: year
+    }
   }
 
   private monthNum(month: string): number {

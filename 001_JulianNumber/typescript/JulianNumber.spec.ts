@@ -31,9 +31,10 @@ describe('JulianNumber', () => {
     const julianNumber: JulianNumber = new JulianNumber()
 
     it('returns a Gregorian year correctly', () => {
-      const result = julianNumber.fromJulianNumber(2470167)
-      expect(result).to.equal(new Date(2050, 12, 25))
+      const result = julianNumber.fromJulianNumber(2299160.5)
+      expect(result.day).to.equal(15)
+      expect(result.month).to.equal(8)
+      expect(result.year).to.equal(1582)
     })
   })
 })
-
