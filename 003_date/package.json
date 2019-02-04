@@ -1,0 +1,31 @@
+{
+  "name": "date",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc **/*.ts --outDir build",
+    "prebuild": "rm -rf build && mkdir build",
+    "test": "yarn build && mocha -r ts-node/register build/spec/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/elanalynn/du_oop.git"
+  },
+  "author": "Elana Kopelevich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elanalynn/du_oop/issues"
+  },
+  "homepage": "https://github.com/elanalynn/du_oop#readme",
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1"
+  }
+}
