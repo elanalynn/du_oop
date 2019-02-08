@@ -4,7 +4,7 @@ import 'mocha'
 
 describe('Date', () => {
   describe('getDay', () => {
-    const date = new Date(30, 5, 2012)
+    const date = new Date(10, 6, 2012)
 
     it('returns a day', () => {
       const result = date.getDay()

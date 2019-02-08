@@ -46,7 +46,7 @@ export default class Date implements Comparable<Date> {
   }
 
   public setDay(day: number): void {
-    // this.validateDay(day, this.month, this.year) ? this.day = day : null
+    this.validateDay(day, this.month, this.year) ? this.day = day : null
   }
 
   public getMonth(): Month {
@@ -103,10 +103,11 @@ export default class Date implements Comparable<Date> {
     return julianNumber.toJulianNumber(this.day, this.month, this.year)
   }
 
-  // private validateDay(day: number, month: Month, year: number) {
+  private validateDay(day: number, month: Month, year: number) {
+    return true
   //   return ([1,3,5,7,8,10,12].includes(this.month) && (day <= 31))
   //     || ([4,6,9,11].includes(this.month) && (day <= 30))
   //     || ((this.month === 2) && !(year % 4) && (day <= 29))
   //     || ((this.month === 2) && (day <= 28) && (year % 4)) ? true : false
-  // }
+  }
 }
