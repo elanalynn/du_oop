@@ -6,3 +6,6 @@
 * 002_Date
   * Gets/Sets Day/Month/Year
   * Simple validation 
+* 003_Date_Extended
+  * Add methods and enums to Date class (copied and extended)
+  * Refactored several pieces
