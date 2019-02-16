@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src/*.ts",
+    "spec/*.spec.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
