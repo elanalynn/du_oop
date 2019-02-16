@@ -8,12 +8,12 @@ describe('JulianNumber', () => {
 
     it('returns a Julian year below 1000', () => {
       const result = julianNumber.toJulianNumber(5, 1, 50)
-      expect(result).to.equal(1739327)
+      expect(result).to.equal(1739326)
     })
 
     it('returns a Julian year for the 1900s', () => {
       const result = julianNumber.toJulianNumber(1, 2, 1957)
-      expect(result).to.equal(2435871)
+      expect(result).to.equal(2435870)
     })
 
     it('returns a Julian year for the 1400s', () => {

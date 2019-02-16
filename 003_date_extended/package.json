@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc **/*.ts --outDir build",
+    "build": "tsc --outDir build",
     "prebuild": "rm -rf build && mkdir build",
     "test": "yarn build && mocha -r ts-node/register build/spec/*.spec.js"
   },
@@ -24,6 +24,7 @@
   "dependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
+    "@types/node": "^11.9.4",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1"

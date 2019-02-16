@@ -1,10 +1,11 @@
+import { SystemDate } from './SystemDate'
 import JulianNumber from './JulianNumber'
 
 interface Comparable<T> {
   compareTo: any
 } 
 
-enum Month {
+export enum Month {
   JANUARY,
   FEBRUARY,
   MARCH,
@@ -29,7 +30,7 @@ enum DayOfWeek {
   SATURDAY
 }
 
-export default class Date implements Comparable<Date> {
+export class Date implements Comparable<Date> {
   private day: number
   private month: Month
   private year: number
@@ -46,7 +47,7 @@ export default class Date implements Comparable<Date> {
   }
 
   public setDay(day: number): void {
-    this.validateDay(day, this.month, this.year) ? this.day = day : null
+    this._validateDay(day, this.month, this.year) ? this.day = day : null
   }
 
   public getMonth(): Month {
@@ -65,37 +66,50 @@ export default class Date implements Comparable<Date> {
     this.year = year
   }
 
-  public getDayOfWeek(): DayOfWeek {
-    const dayOfWeek = (this._julianNumber() + 1 ) % 7
-    return this.dayOfWeek
+  public getDayOfWeek(): string {
+    const dayOfWeekNumber = (this._julianNumber() + 1 ) % 7
+    return DayOfWeek[dayOfWeekNumber]
   }
 
-  public setDayOfWeek(dayOfWeek): void {
-    this.dayOfWeek = dayOfWeek
-  }
+  public compareTo(date: Date): number {
+    const dateInMs = this._toMs(date)
+    const systemDate = new SystemDate()
+    const todayInMs = systemDate.now()
 
-  public compareTo(date: Date): DayOfWeek {
-    return this.dayOfWeek
+    if (dateInMs > todayInMs) return 1
+    if (dateInMs < todayInMs) return -1
+    return 0
   }
 
   public addDays(days: number): void {
-    this.day + days
+    this.day += days
   }
 
   public subtractDays(days: number): void {
-    this.day - days
+    this.day -= days
   }
-  // Inclusive
+
   public isBetween(start: Date, end: Date): boolean {
-    return true
+    const invalidRange = this._toMs(start) >= this._toMs(end)
+    if (invalidRange) throw new Error('Invalid Range')
+
+    const afterStart = this._toMs(start) <= this._toMs(this)
+    const beforeEnd = this._toMs(end) >= this._toMs(this)
+
+    return afterStart && beforeEnd
   }
 
   static isLeapYear(year: number): boolean {
     return !(year % 4) && (year % 100) || !(year % 4) && !(year % 400) ? true : false
   }
    
-  public getLastDayOfMonth(month: Month, year: number ): number {
-    return 1
+  public getLastDayOfMonth(month: number, year: number): number {
+    if (month === 2) {
+      if (Date.isLeapYear(year)) return 29
+      else return 28
+    }
+    if ([1,3,5,7,8,10,12].includes(month)) return 31
+    if ([4,6,9,11].includes(month)) return 30
   }
   
   private _julianNumber(): number {
@@ -103,11 +117,17 @@ export default class Date implements Comparable<Date> {
     return julianNumber.toJulianNumber(this.day, this.month, this.year)
   }
 
-  private validateDay(day: number, month: Month, year: number) {
-    return true
-  //   return ([1,3,5,7,8,10,12].includes(this.month) && (day <= 31))
-  //     || ([4,6,9,11].includes(this.month) && (day <= 30))
-  //     || ((this.month === 2) && !(year % 4) && (day <= 29))
-  //     || ((this.month === 2) && (day <= 28) && (year % 4)) ? true : false
+  private _validateDay(day: number, month: Month, year: number) {
+    return ([1,3,5,7,8,10,12].includes(this.month) && (day <= 31))
+      || ([4,6,9,11].includes(this.month) && (day <= 30))
+      || ((this.month === 2) && !(year % 4) && (day <= 29))
+      || ((this.month === 2) && (day <= 28) && (year % 4)) ? true : false
+  }
+
+  private _toMs(date: Date): number {
+    const msInADay = 86400
+    const days = ((date.year - 1970) * 365) + (date.month * 30.4166) + date.day
+    const ms = (days * msInADay) * 1000
+    return ms
   }
 }

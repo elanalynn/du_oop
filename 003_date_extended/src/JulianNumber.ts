@@ -8,7 +8,7 @@ export default class JulianNumber {
   toJulianNumber(day: number, month: number, year: number): number {
     const julianNumber: number = ( 1461 * (year + 4800 + (month - 14 ) / 12 ) ) / 4 + ( 367 * (month - 2 - 12 * ( (month - 14 ) / 12 ) ) ) / 12 - ( 3 * ( ( year + 4900 + ( month - 14 ) / 12 ) / 100 ) ) / 4 + day - 32075
 
-    return Math.round(julianNumber)
+    return Math.floor(julianNumber)
   }
   
   fromJulianNumber(julianNumber: number): DateMap {
