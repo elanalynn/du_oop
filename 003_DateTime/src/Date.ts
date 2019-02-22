@@ -1,20 +1,36 @@
 import { SystemDate } from './SystemDate'
 import { JulianNumber } from './JulianNumber'
-import { Comparable } from './interfaces/Comparable'
-import { Month } from './enums/Month'
-import { DayOfWeek } from './enums/DayOfWeek'
 
-// public DateTime();
-// public DateTime( Date date, int hours, int minutes );
-// public DateTime( DateTime dateTime );
-// public Date GetDate();
-// public int GetHours();
-// public int GetMinutes();
-// public int compareTo( DateTime dateTime );
-// public boolean IsBetween( DateTime start, DateTime end); // Inclusive
-// public void AddTime( int hours, int minutes );
+interface Comparable<T> {
+  compareTo: any
+} 
 
-export class DateTime implements Comparable<Date> {
+export enum Month {
+  JANUARY,
+  FEBRUARY,
+  MARCH,
+  APRIL,
+  MAY,
+  JUNE,
+  JULY,
+  AUGUST,
+  SEPTEMBER,
+  OCTOBER,
+  NOVEMBER,
+  DECEMBER,
+}
+
+enum DayOfWeek {
+  SUNDAY,
+  MONDAY,
+  TUESDAY,
+  WEDNESDAY,
+  THURSDAY,
+  FRIDAY,
+  SATURDAY
+}
+
+export class Date implements Comparable<Date> {
   private day: number
   private month: Month
   private year: number

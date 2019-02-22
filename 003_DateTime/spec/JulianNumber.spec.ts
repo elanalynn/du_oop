@@ -1,4 +1,4 @@
-import JulianNumber from '../src/JulianNumber'
+import { JulianNumber } from '../src/JulianNumber'
 import { expect } from 'chai'
 import 'mocha'
 
