@@ -1,4 +1,4 @@
-# DateTime Class (TypeScript)
+# Calendar Class (TypeScript)
 
 ### Requirements
 - [Node](https://nodejs.org/en/download/) 
