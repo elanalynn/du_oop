@@ -57,32 +57,36 @@ describe('DateTime', () => {
     const dateTime = new DateTime(date, 4, 38)
 
     it('returns 1 if dateTime is greater than self', () => {
-      const result = dateTime.compareTo(new DateTime(date, 4, 40))
+      const result = dateTime.compareTo(new DateTime(date, 5, 38))
       expect(result).to.equal(1)
     })
 
-    it('returns 0 if dateTime is equal than self', () => {
-      const result = dateTime.compareTo(new DateTime(date, 4, 40))
+    it('returns 0 if dateTime is equal to self', () => {
+      const result = dateTime.compareTo(new DateTime(date, 4, 38))
       expect(result).to.equal(0)
     })
 
     it('returns -1 if dateTime is less than self', () => {
-      const result = dateTime.compareTo(new DateTime(date, 4, 40))
+      const result = dateTime.compareTo(new DateTime(date, 3, 38))
       expect(result).to.equal(-1)
     })
   })
 
   describe('isBetween', () => {
-    const date = new Date(10, 6, 2012)
+    const date = new Date(10, 6, 2010)
     const dateTime = new DateTime(date)
 
     it('returns true if the dateTime is between start and end dateTimes', () => {
-      const result = dateTime.isBetween(new DateTime(date, 5, 20), new DateTime(date, 5, 20))
+      const startDate = new Date(10, 6, 2008)
+      const endDate = new Date(10, 6, 2012)
+      const result = dateTime.isBetween(new DateTime(startDate, 5, 20), new DateTime(endDate, 8, 20))
       expect(result).to.equal(true)
     })
 
     it('returns false if the dateTime is not between start and end dateTimes', () => {
-      const result = dateTime.isBetween(new DateTime(date, 5, 20), new DateTime(date, 5, 20))
+      const startDate = new Date(10, 6, 2011)
+      const endDate = new Date(10, 6, 2012)
+      const result = dateTime.isBetween(new DateTime(startDate, 5, 20), new DateTime(endDate, 8, 20))
       expect(result).to.equal(false)
     })
   })
