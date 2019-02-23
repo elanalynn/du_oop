@@ -56,9 +56,19 @@ describe('DateTime', () => {
     const date = new Date(10, 6, 2012)
     const dateTime = new DateTime(date, 4, 38)
 
-    it('compares DateTime to self', () => {
-      const result = dateTime.getDate()
-      expect(result).to.deep.equal({ day: 10, month: 6, year: 2012 })
+    it('returns 1 if dateTime is greater than self', () => {
+      const result = dateTime.compareTo(new DateTime(date, 4, 40))
+      expect(result).to.equal(1)
+    })
+
+    it('returns 0 if dateTime is equal than self', () => {
+      const result = dateTime.compareTo(new DateTime(date, 4, 40))
+      expect(result).to.equal(0)
+    })
+
+    it('returns -1 if dateTime is less than self', () => {
+      const result = dateTime.compareTo(new DateTime(date, 4, 40))
+      expect(result).to.equal(-1)
     })
   })
 
@@ -66,19 +76,14 @@ describe('DateTime', () => {
     const date = new Date(10, 6, 2012)
     const dateTime = new DateTime(date)
 
-    it('returns -1 if the dateTime is before start dateTime', () => {
-      const result = dateTime.getDate()
-      expect(result).to.deep.equal({ day: 10, month: 6, year: 2012 })
+    it('returns true if the dateTime is between start and end dateTimes', () => {
+      const result = dateTime.isBetween(new DateTime(date, 5, 20), new DateTime(date, 5, 20))
+      expect(result).to.equal(true)
     })
 
-    it('returns 0 if the dateTime is between start and end dateTimes', () => {
-      const result = dateTime.getDate()
-      expect(result).to.deep.equal({ day: 10, month: 6, year: 2012 })
-    })
-
-    it('returns 1 if the dateTime is after the end dateTime', () => {
-      const result = dateTime.getDate()
-      expect(result).to.deep.equal({ day: 10, month: 6, year: 2012 })
+    it('returns false if the dateTime is not between start and end dateTimes', () => {
+      const result = dateTime.isBetween(new DateTime(date, 5, 20), new DateTime(date, 5, 20))
+      expect(result).to.equal(false)
     })
   })
 
@@ -87,8 +92,13 @@ describe('DateTime', () => {
     const dateTime = new DateTime(date)
 
     it('adds time to DateTime', () => {
-      const result = dateTime.getDate()
-      expect(result).to.deep.equal({ day: 10, month: 6, year: 2012 })
+      dateTime.addTime(3, 56)
+
+      const hours = dateTime.getHours()
+      const minutes = dateTime.getMinutes()
+
+      expect(hours).to.equal(3)
+      expect(minutes).to.equal(56)
     })
   })
 })

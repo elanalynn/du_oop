@@ -38,20 +38,34 @@ export class DateTime implements Comparable<Date> {
   }
 
   public compareTo(dateTime: DateTime ): number {
-    console.log(this)
-    if (this > dateTime) return 1
-    if (this === dateTime) return -1
-    return 1
+    if(dateTime.getDate() > this.getDate()) return 1
+    if(dateTime.getHours() > this.getHours()) return 1
+    if(dateTime.getMinutes() > this.getMinutes()) return 1
+
+    if(dateTime.getDate() === this.getDate()) return 0
+    if(dateTime.getHours() === this.getHours()) return 0
+    if(dateTime.getMinutes() === this.getMinutes()) return 0 
+
+    if(dateTime.getDate() < this.getDate()) return -1
+    if(dateTime.getHours() < this.getHours()) return -1
+    if(dateTime.getMinutes() < this.getMinutes()) return -1 
   }
 
   // Inclusive
   public isBetween(start: DateTime, end: DateTime): boolean {
-    console.log(start, end)
+    console.log(this._dateToNumber(start), this._dateToNumber(end))
+
+    if (start.getDate() > end.getDate()) throw new Error('start date cannot be later than end date')
     return true
   }
 
   public addTime(hours: number, minutes: number): void {
     this.hours = this.hours + hours
     this.minutes = this.minutes + minutes
+  }
+
+  private _dateToNumber(date: Date): string {
+    console.log(`${date.getYear()}${date.getMonth()}${date.getDay()}`)
+    return `${date.getYear()}${date.getMonth()}${date.getDay()}`
   }
 }
