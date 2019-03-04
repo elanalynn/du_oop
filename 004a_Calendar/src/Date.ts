@@ -36,7 +36,7 @@ export class Date implements Comparable<Date> {
   private year: number
   private dayOfWeek: DayOfWeek
 
-  constructor(day: number, month: Month, year: number) {
+  constructor(day: number = 1, month: Month = 1, year: number = 1970) {
     this.day = day
     this.month = month
     this.year = year
