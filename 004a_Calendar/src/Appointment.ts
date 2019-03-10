@@ -13,17 +13,14 @@ export class Appointment extends CalendarEvent {
     this.startTime = startTime
     this.duration = duration
     this.details = details
-    this.endTime = DateTime.minutesToDateTime(DateTime.dateToMinutes(this.startTime) + this.duration)
+    this.endTime = DateTime.minutesToDateTime(DateTime.dateTimeToMinutes(this.startTime) + this.duration)
   }
 
   public isRecurring(): boolean {
     return true
   }
 
-  public IsOccuringOn( date: DateTime ): boolean {
-    const endTime: DateTime = 
-    if (date.isBetween(this.startTime, this.endTime) {
-      return true
-    }
+  public IsOccuringOn(dateTime: DateTime): boolean {
+    return dateTime.isBetween(this.startTime, this.endTime)
   }
 }

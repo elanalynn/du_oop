@@ -114,9 +114,17 @@ describe('DateTime', () => {
     })
   })
 
-  describe('minutesToDate', () => {
-    it('adds time to DateTime', () => {
-      const date = DateTime.minutesToDate(100)
+  describe('minutesToDateTime', () => {
+    it('returns the DateTime equivelant to the minutes', () => {
+      const date = DateTime.minutesToDateTime(100)
+
+      expect(date).to.equal(3)
+    })
+  })
+
+  describe('dateTimeToMinutes', () => {
+    it('returns the minutes equivelant to the DateTime', () => {
+      const date = DateTime.dateTimeToMinutes(new DateTime())
 
       expect(date).to.equal(3)
     })
