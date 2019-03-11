@@ -106,27 +106,19 @@ describe('DateTime', () => {
     })
   })
 
-  describe('dateToMinutes', () => {
-    it('adds time to DateTime', () => {
-      const minutes = DateTime.dateToMinutes(new DateTime)
+  describe('stringNumberToDateTime', () => {
+    it('converts the string to a DateTime', () => {
+      const date = DateTime.stringNumberToDateTime('201812120930')
 
-      expect(minutes).to.equal(56)
+      expect(date).to.deep.equal(new DateTime(new Date(12, 12, 2018), 9, 30))
     })
   })
 
-  describe('minutesToDateTime', () => {
-    it('returns the DateTime equivelant to the minutes', () => {
-      const date = DateTime.minutesToDateTime(100)
+  describe('dateTimeToStringNumber', () => {
+    it('converts the DateTime to a string', () => {
+      const date = DateTime.dateTimeToStringNumber(new DateTime())
 
-      expect(date).to.equal(3)
-    })
-  })
-
-  describe('dateTimeToMinutes', () => {
-    it('returns the minutes equivelant to the DateTime', () => {
-      const date = DateTime.dateTimeToMinutes(new DateTime())
-
-      expect(date).to.equal(3)
+      expect(date).to.equal('19701100')
     })
   })
 })

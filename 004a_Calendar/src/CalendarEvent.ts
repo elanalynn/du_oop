@@ -9,5 +9,5 @@ export abstract class CalendarEvent {
   
   abstract isRecurring(): boolean
 
-  abstract IsOccuringOn( date: DateTime ): boolean
+  abstract isOccuringOn( date: DateTime ): boolean
 }

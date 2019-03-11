@@ -1,3 +1,4 @@
+import { Date } from '../src/Date'
 import { DateTime } from '../src/DateTime'
 import { Appointment } from '../src/Appointment'
 import { expect } from 'chai'
@@ -8,7 +9,7 @@ describe('Appointment', () => {
     let appointment
 
     beforeEach(() => {
-      appointment = new Appointment('Salsa Class', new DateTime(), 60, 'learn to code')
+      appointment = new Appointment('Salsa Class', new DateTime(), 60, 'learn to code', true)
     })
 
     it('returns true if the appointment is recurring', () => {
@@ -24,15 +25,15 @@ describe('Appointment', () => {
     let appointment
 
     beforeEach(() => {
-      appointment = new Appointment('History Class', new DateTime(), 60, 'learn about things')
+      appointment = new Appointment('History Class', new DateTime(), 60, 'learn about things', true)
     })
 
     it('returns true if the appointment is occurring on the given date', () => {
-      expect(appointment.isRecurring()).to.equal(true)
+      expect(appointment.isRecurring(new DateTime())).to.equal(true)
     })
 
     it('returns false if the appointment is not occurring on the given date', () => {
-      expect(appointment.isRecurring()).to.equal(false)
+      expect(appointment.isRecurring(new DateTime(new Date(23, 12, 2019)))).to.equal(true)
     })
   })
 })

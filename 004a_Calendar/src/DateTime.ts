@@ -37,15 +37,15 @@ export class DateTime implements Comparable<Date> {
   }
 
   public compareTo(dateTime: DateTime ): number {
-    if (DateTime.dateTimeToMinutes(dateTime) > DateTime.dateTimeToMinutes(this)) return 1
-    if (DateTime.dateTimeToMinutes(dateTime) === DateTime.dateTimeToMinutes(this)) return 0
-    if (DateTime.dateTimeToMinutes(dateTime) < DateTime.dateTimeToMinutes(this)) return -1
+    if (DateTime.dateTimeToStringNumber(dateTime) > DateTime.dateTimeToStringNumber(this)) return 1
+    if (DateTime.dateTimeToStringNumber(dateTime) === DateTime.dateTimeToStringNumber(this)) return 0
+    if (DateTime.dateTimeToStringNumber(dateTime) < DateTime.dateTimeToStringNumber(this)) return -1
   }
 
   // Inclusive
   public isBetween(start: DateTime, end: DateTime): boolean {
-    if (DateTime.dateTimeToMinutes(start) > DateTime.dateTimeToMinutes(end)) throw new Error('start cannot be later than end')
-    return DateTime.dateTimeToMinutes(start) <= DateTime.dateTimeToMinutes(this) && DateTime.dateTimeToMinutes(end) >= DateTime.dateTimeToMinutes(this)
+    if (DateTime.dateTimeToStringNumber(start) > DateTime.dateTimeToStringNumber(end)) throw new Error('start cannot be later than end')
+    return DateTime.dateTimeToStringNumber(start) <= DateTime.dateTimeToStringNumber(this) && DateTime.dateTimeToStringNumber(end) >= DateTime.dateTimeToStringNumber(this)
   }
 
   public addTime(hours: number, minutes: number): void {
@@ -53,26 +53,18 @@ export class DateTime implements Comparable<Date> {
     this.minutes = this.minutes + minutes
   }
 
-  static minutesToDateTime(minutes: number): DateTime {
-    console.log(, minutes)
-
-    //  {{day, month, year}, hour, minute}
-    const days = Math.floor(minutes / 8640)
-    const months = days - Math.floor(minutes / 8640)
-    const years = 1
-    const date = new Date(days, months, years)
-    const hoursForDate = Math.floor(minutes / 60)
-    const minutesForDate = minutes - days - months - years 
-    return new DateTime(date, hoursForDate, minutesForDate)
+  static stringNumberToDateTime(dateString: string): DateTime {
+    const year = Number.parseInt(dateString.slice(0, 4))
+    const month = Number.parseInt(dateString.slice(4, 6))
+    const day = Number.parseInt(dateString.slice(6, 8))
+    const hour = Number.parseInt(dateString.slice(8, 10))
+    const minute = Number.parseInt(dateString.slice(10, 12))
+    const date = new Date (day, month, year)
+    return new DateTime(date, hour, minute)
   }
 
-  static dateTimeToMinutes(dateTime: DateTime): number {
-    return Number.parseInt(`
-      ${dateTime.getDate().getYear()}
-      ${dateTime.getDate().getMonth()}
-      ${dateTime.getDate().getDay()}
-      ${dateTime.getHours()}
-      ${dateTime.getMinutes()}
-    `)
+  static dateTimeToStringNumber(dateTime: DateTime): string {
+    const dateString = `${dateTime.getDate().getYear()}${dateTime.getDate().getMonth()}${dateTime.getDate().getDay()}${dateTime.getHours()}${dateTime.getMinutes()}`
+    return dateString
   }
 }

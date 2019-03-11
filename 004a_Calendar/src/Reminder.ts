@@ -16,7 +16,7 @@ export class Reminder extends CalendarEvent {
     return true
   }
 
-  public IsOccuringOn(date: DateTime): boolean {
+  public isOccuringOn(date: DateTime): boolean {
     if (date === this.dateTime) {
       return true
     } else {
