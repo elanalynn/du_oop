@@ -4,31 +4,29 @@ import { DateTime } from './DateTime'
 export class Reminder extends CalendarEvent {
   private dateTime: DateTime
   private details: string
+  private recurring: boolean
 
-  constructor(label: string, dateTime: DateTime, details: string) {
+  constructor(label: string, dateTime: DateTime, details: string, recurring: boolean) {
     super(label)
 
     this.dateTime = dateTime
     this.details = details
+    this.recurring = recurring
   }
 
-  public isRecurring(): boolean {
-    return true
-  }
-
-  public isOccuringOn(date: DateTime): boolean {
-    if (date === this.dateTime) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  getDateTime(): DateTime {
+  public getDateTime(): DateTime {
     return this.dateTime
   }
 
-  getDetails(): string {
+  public getDetails(): string {
     return this.details
+  }
+
+  public isRecurring(): boolean {
+    return this.recurring
+  }
+
+  public isOccuringOn(date: DateTime): boolean {
+    return date === this.dateTime
   }
 }

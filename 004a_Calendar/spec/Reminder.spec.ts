@@ -5,13 +5,54 @@ import { expect } from 'chai'
 import 'mocha'
 
 describe('Reminder', () => {
-  describe('isOccuringOn', () => {
-    const date = new Date(10, 6, 2012)
-    const dateTime = new DateTime(date)
+  let date = new Date()
+  let dateTime = new DateTime(date)
+  let reminder = new Reminder('appointment', dateTime, 'dance lesson', true)
 
-    it('returns a date', () => {
-      const result = dateTime.getDate()
-      expect(result).to.deep.equal({ day: 10, month: 6, year: 2012 })
+  beforeEach(() => {
+    date = new Date(10, 6, 2012)
+    dateTime = new DateTime(date, 10, 12)
+  })
+
+  describe('getDateTime', () => {
+    it('gets the date and time of the reminder', () => {
+      const result = reminder.getDateTime()
+      expect(result.getDate().getDay()).to.equal(1)
+      expect(result.getDate().getMonth()).to.equal(1)
+      expect(result.getDate().getYear()).to.equal(1970)
+    })
+  })
+
+  describe('getDetails', () => {
+    it('gets the details of the reminder', () => {
+      const result = reminder.getDetails()
+      expect(result).to.equal('dance lesson')
+    })
+  })
+
+  describe('isOccuringOn', () => {
+    it('returns true if the reminder occurs on the given date', () => {
+      const result = reminder.isOccuringOn(dateTime)
+      expect(result).to.equal(false)
+    })
+
+    it('returns false if the reminder does not occur on the given date', () => {
+      const otherDateTime = new DateTime(new Date(12, 12, 12), 12, 12)
+      const result = reminder.isOccuringOn(otherDateTime)
+      expect(result).to.equal(false)
+    })
+  })
+
+  describe('isRecurring', () => {
+    it('returns true if the reminder is recurring', () => {
+      const result = reminder.isRecurring()
+      expect(result).to.equal(true)
+    })
+
+    it('returns false if the reminder is not recurring', () => {
+      const otherReminder = new Reminder('appointment', dateTime, 'dance lesson', false)
+      const result = otherReminder.isRecurring()
+      expect(result).to.equal(false)
     })
   })
 })
