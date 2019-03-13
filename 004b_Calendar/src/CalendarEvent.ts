@@ -1,3 +1,5 @@
+import { DateTime } from './DateTime'
+
 export abstract class CalendarEvent {
   private label: string
 
@@ -6,4 +8,6 @@ export abstract class CalendarEvent {
   }
   
   abstract isRecurring(): boolean
+
+  abstract isOccuringOn( date: DateTime ): boolean
 }
