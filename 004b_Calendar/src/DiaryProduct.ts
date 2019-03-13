@@ -17,8 +17,8 @@ export class DiaryProduct {
   private objectId: ObjectId
 
   constructor(classId: ClassId, objectId: ObjectId) {
-    this.classId = ClassId
-    this.objectId = ObjectId
+    this.classId = classId
+    this.objectId = objectId
   }
 
   public getClassId(): ClassId {

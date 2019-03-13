@@ -1,34 +1,33 @@
 import { SystemDate } from './SystemDate'
 import { JulianNumber } from './JulianNumber'
+import { Comparable } from './interfaces/Comparable'
+import { Month } from './enums/Month'
+import { DayOfWeek } from './enums/DayOfWeek'
 
-interface Comparable<T> {
-  compareTo: any
-} 
+// export enum Month {
+//   JANUARY,
+//   FEBRUARY,
+//   MARCH,
+//   APRIL,
+//   MAY,
+//   JUNE,
+//   JULY,
+//   AUGUST,
+//   SEPTEMBER,
+//   OCTOBER,
+//   NOVEMBER,
+//   DECEMBER,
+// }
 
-export enum Month {
-  JANUARY,
-  FEBRUARY,
-  MARCH,
-  APRIL,
-  MAY,
-  JUNE,
-  JULY,
-  AUGUST,
-  SEPTEMBER,
-  OCTOBER,
-  NOVEMBER,
-  DECEMBER,
-}
-
-enum DayOfWeek {
-  SUNDAY,
-  MONDAY,
-  TUESDAY,
-  WEDNESDAY,
-  THURSDAY,
-  FRIDAY,
-  SATURDAY
-}
+// enum DayOfWeek {
+//   SUNDAY,
+//   MONDAY,
+//   TUESDAY,
+//   WEDNESDAY,
+//   THURSDAY,
+//   FRIDAY,
+//   SATURDAY
+// }
 
 export class Date implements Comparable<Date> {
   private day: number

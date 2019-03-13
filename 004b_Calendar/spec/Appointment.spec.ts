@@ -1,15 +1,21 @@
 import { Date } from '../src/Date'
 import { DateTime } from '../src/DateTime'
 import { Appointment } from '../src/Appointment'
+import { ClassId } from '../src/ClassId'
+import { ObjectId } from '../src/ObjectId'
 import { expect } from 'chai'
 import 'mocha'
 
 describe('Appointment', () => {
   describe('isRecurring', () => {
-    let appointment
+    let appointment: Appointment
+    let classId: ClassId
+    let objectId: ObjectId
 
     beforeEach(() => {
-      appointment = new Appointment(1, 1, 'Salsa Class', new DateTime(), 60, 'learn to code', true)
+      classId = new ClassId()
+      objectId = new ObjectId()
+      appointment = new Appointment(classId, objectId, 'Salsa Class', new DateTime(), 60, 'learn to code', true)
     })
 
     it('returns true if the appointment is recurring', () => {
@@ -22,18 +28,22 @@ describe('Appointment', () => {
   })
 
   describe('isOccuringOn', () => {
-    let appointment
+    let appointment: Appointment
+    let classId: ClassId
+    let objectId: ObjectId
 
     beforeEach(() => {
-      appointment = new Appointment(1, 1, 'History Class', new DateTime(), 60, 'learn about things', true)
+      classId = new ClassId()
+      objectId = new ObjectId()
+      appointment = new Appointment(classId, objectId, 'History Class', new DateTime(), 60, 'learn about things', true)
     })
 
     it('returns true if the appointment is occurring on the given date', () => {
-      expect(appointment.isRecurring(new DateTime())).to.equal(true)
+      expect(appointment.isOccuringOn(new DateTime())).to.equal(true)
     })
 
     it('returns false if the appointment is not occurring on the given date', () => {
-      expect(appointment.isRecurring(new DateTime(new Date(23, 12, 2019)))).to.equal(true)
+      expect(appointment.isOccuringOn(new DateTime(new Date(23, 12, 2019)))).to.equal(false)
     })
   })
 })

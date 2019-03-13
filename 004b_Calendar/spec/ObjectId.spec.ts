@@ -1,9 +1,9 @@
-import { ClassId } from '../src/ClassId'
+import { ObjectId } from '../src/ObjectId'
 import { expect } from 'chai'
 import 'mocha'
 
-describe('ClassId', () => {
-  let classId = new ClassId()
+describe('ObjectId', () => {
+  let objectId = new ObjectId()
 
   beforeEach(() => {
   })

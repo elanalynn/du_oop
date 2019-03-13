@@ -1,3 +1,6 @@
 export class ObjectId {
-  constructor() {}
+  // private id: number
+
+  constructor() {
+  }
 }

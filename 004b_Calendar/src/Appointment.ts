@@ -5,8 +5,6 @@ import { Date } from './Date'
 import { DateTime } from './DateTime'
 
 export class Appointment extends CalendarEvent {
-  // private classId: ClassId
-  // private objectId: ObjectId
   private startTime: DateTime
   private endTime: DateTime
   private duration: number
@@ -24,8 +22,6 @@ export class Appointment extends CalendarEvent {
   ) {
     super(classId, objectId, label)
 
-    // this.classId = classId
-    // this.objectId = objectId
     this.startTime = startTime
     this.duration = duration
     this.details = details
