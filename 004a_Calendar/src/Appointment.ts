@@ -24,7 +24,6 @@ export class Appointment extends CalendarEvent {
   }
 
   public isOccuringOn(dateTime: DateTime): boolean {
-    console.log('holla', dateTime, this.startTime, this.endTime)
     return dateTime.isBetween(this.startTime, this.endTime)
   }
 

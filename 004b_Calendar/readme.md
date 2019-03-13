@@ -12,6 +12,7 @@
 ### Assignment Instructions
 Each existing persistent domain class will be derived from `DiaryProduct`.
 The class definition for DiaryProduct is:
+
 ```java
 public class DiaryProduct {
   public DiaryProduct ( ClassId classId, ObjectId objectId);

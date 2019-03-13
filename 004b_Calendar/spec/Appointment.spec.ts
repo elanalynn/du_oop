@@ -9,7 +9,7 @@ describe('Appointment', () => {
     let appointment
 
     beforeEach(() => {
-      appointment = new Appointment('Salsa Class', new DateTime(), 60, 'learn to code', true)
+      appointment = new Appointment(1, 1, 'Salsa Class', new DateTime(), 60, 'learn to code', true)
     })
 
     it('returns true if the appointment is recurring', () => {
@@ -25,7 +25,7 @@ describe('Appointment', () => {
     let appointment
 
     beforeEach(() => {
-      appointment = new Appointment('History Class', new DateTime(), 60, 'learn about things', true)
+      appointment = new Appointment(1, 1, 'History Class', new DateTime(), 60, 'learn about things', true)
     })
 
     it('returns true if the appointment is occurring on the given date', () => {

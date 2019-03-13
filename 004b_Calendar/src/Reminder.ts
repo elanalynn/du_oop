@@ -1,4 +1,6 @@
 import { CalendarEvent } from './CalendarEvent'
+import { ClassId } from './ClassId'
+import { ObjectId } from './ObjectId'
 import { DateTime } from './DateTime'
 
 export class Reminder extends CalendarEvent {
@@ -6,8 +8,15 @@ export class Reminder extends CalendarEvent {
   private details: string
   private recurring: boolean
 
-  constructor(label: string, dateTime: DateTime, details: string, recurring: boolean) {
-    super(label)
+  constructor(
+    classId: ClassId,
+    objectId: ObjectId,
+    label: string,
+    dateTime: DateTime,
+    details: string,
+    recurring: boolean) {
+
+    super(classId, objectId, label)
 
     this.dateTime = dateTime
     this.details = details

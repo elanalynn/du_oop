@@ -7,7 +7,7 @@ import 'mocha'
 describe('Reminder', () => {
   let date = new Date()
   let dateTime = new DateTime(date)
-  let reminder = new Reminder('appointment', dateTime, 'dance lesson', true)
+  let reminder = new Reminder(1, 1, 'appointment', dateTime, 'dance lesson', true)
 
   beforeEach(() => {
     date = new Date(10, 6, 2012)
@@ -50,7 +50,7 @@ describe('Reminder', () => {
     })
 
     it('returns false if the reminder is not recurring', () => {
-      const otherReminder = new Reminder('appointment', dateTime, 'dance lesson', false)
+      const otherReminder = new Reminder(1, 1, 'appointment', dateTime, 'dance lesson', false)
       const result = otherReminder.isRecurring()
       expect(result).to.equal(false)
     })
