@@ -22,7 +22,7 @@ export class DiaryProduct {
   }
 
   public getClassId(): ClassId {
-    return new ClassId()
+    return new ClassId('diaryProduct')
   }
 
   public getObjectId(): ObjectId {

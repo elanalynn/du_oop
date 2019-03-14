@@ -8,7 +8,7 @@ describe('ClassId', () => {
     let classId
 
     beforeEach(() => {
-      classId = new ClassId()
+      classId = new ClassId('monkey')
     })
 
     it('gets the last class id that was set', () => {

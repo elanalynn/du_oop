@@ -14,7 +14,7 @@ describe('Reminder', () => {
   let reminder: Reminder
 
   beforeEach(() => {
-    classId = new ClassId()
+    classId = new ClassId('reminder')
     objectId = new ObjectId()
     date = new Date(10, 6, 2012)
     dateTime = new DateTime(date, 10, 12)

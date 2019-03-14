@@ -1,11 +1,3 @@
-// Java Example
-// public class Contact extends DiaryProduct {
-//   public Contact ( ObjectId objectId, …. ) {
-//     super( new ClassId( “Contact”), objectId );
-//     …
-//     }
-// }
-
 import { DiaryProduct } from './DiaryProduct'
 import { ClassId } from './ClassId'
 import { ObjectId } from './ObjectId'
@@ -17,7 +9,7 @@ export class Contact extends DiaryProduct {
   }
 
   public getClassId(): ClassId {
-    return new ClassId()
+    return new ClassId('contact')
   }
 
   public getObjectId(): ObjectId {

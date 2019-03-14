@@ -1,27 +1,35 @@
 const fs = require('fs')
 
 export class ClassId {
-  constructor() {
-    this.createId()
+  private id: string
+  private filePath: string
+  
+  constructor(id: string, filePath: string = './db/classId') {
+    this.id = id
+    this.filePath = filePath
+    this.findOrCreateId(id, filePath)
   }
   
-  public getLastId(filePath = './db/classId'): number {
-    const data = fs.readFileSync(filePath, 'utf8', (err, data) => {
-      if (err) throw err
-      return data
-    })
+  public getLastId(filePath): string {
+    const data = this.readFile(filePath)
     return data.split(',').pop()
   }
 
-  private createId(): void {
-    const lastId = this.getLastId()
-    const nextId = +lastId + 1
-    this.saveId(nextId)
+  private findOrCreateId(id, filePath): void {
+    const data = this.readFile(filePath)
+    data.split(',').indexOf(id) !== -1 ? id : this.createId(id, filePath)
   }
 
-  private saveId(id): void {
-    fs.appendFile('./db/classId', `,${+id}`, err => {
+  private createId(id, filePath): void {
+    fs.appendFile(filePath, `,${+id}`, err => {
       if (err) throw err
+    })
+  }
+
+  private readFile(filePath) {
+    return fs.readFileSync(filePath, 'utf8', (err, data) => {
+      if (err) throw err
+      return data
     })
   }
 }

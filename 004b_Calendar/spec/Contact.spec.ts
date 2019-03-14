@@ -10,13 +10,20 @@ describe('Contact', () => {
   let contact
 
   beforeEach(() => {
-    classId = new ClassId()
+    classId = new ClassId('contact')
     objectId = new ObjectId()
     contact = new Contact(classId, objectId)
   })
 
-  describe('something', () => {
-    it('does something', () => {
+  describe('getClassId', () => {
+    it('gets the class id', () => {
+      const result = true
+      expect(result).to.equal(true)
+    })
+  })
+
+  describe('getObjectId', () => {
+    it('gets the object id', () => {
       const result = true
       expect(result).to.equal(true)
     })
