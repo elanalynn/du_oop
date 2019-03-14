@@ -1,4 +1,5 @@
-package Diary;
+
+// package Diary;
 
 import java.io.*;
 import java.util.*;

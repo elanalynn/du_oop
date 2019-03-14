@@ -11,13 +11,9 @@ import { ClassId } from './ClassId'
 import { ObjectId } from './ObjectId'
 
 export class Contact extends DiaryProduct {
-  // private classId: ClassId
-  // private objectId: ObjectId
 
   constructor(classId: ClassId, objectId: ObjectId) {
     super(classId, objectId)
-    // this.classId = ClassId
-    // this.objectId = ObjectId
   }
 
   public getClassId(): ClassId {

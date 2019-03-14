@@ -1,17 +1,20 @@
 import { ClassId } from '../src/ClassId'
 import { expect } from 'chai'
 import 'mocha'
+const fs = require('fs')
 
 describe('ClassId', () => {
-  let classId = new ClassId()
+  describe('getLastId', () => {
+    let classId
 
-  beforeEach(() => {
-  })
+    beforeEach(() => {
+      classId = new ClassId()
+    })
 
-  describe('something', () => {
-    it('does something', () => {
-      const result = true
-      expect(result).to.equal(true)
+    it('gets the last class id that was set', () => {
+      const result = classId.getLastId('./spec/mocks/mockIds')
+
+      expect(result).to.equal('6')
     })
   })
 })
