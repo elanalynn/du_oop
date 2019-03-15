@@ -13,7 +13,7 @@ describe('Appointment', () => {
     let objectId: ObjectId
 
     beforeEach(() => {
-      classId = new ClassId('appointment')
+      classId = new ClassId('Appointment')
       objectId = new ObjectId()
       appointment = new Appointment(classId, objectId, 'Salsa Class', new DateTime(), 60, 'learn to code', true)
     })
@@ -33,7 +33,7 @@ describe('Appointment', () => {
     let objectId: ObjectId
 
     beforeEach(() => {
-      classId = new ClassId('appointment')
+      classId = new ClassId('Appointment')
       objectId = new ObjectId()
       appointment = new Appointment(classId, objectId, 'History Class', new DateTime(), 60, 'learn about things', true)
     })

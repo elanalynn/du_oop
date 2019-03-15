@@ -5,7 +5,7 @@ import { Date } from './Date'
 import { DateTime } from './DateTime'
 
 export class Appointment extends CalendarEvent {
-  private startTime: DateTime
+  private occursFirst: DateTime
   private endTime: DateTime
   private duration: number
   private details: string
@@ -15,17 +15,17 @@ export class Appointment extends CalendarEvent {
     classId: ClassId,
     objectId: ObjectId,
     label: string,
-    startTime: DateTime,
+    occursFirst: DateTime,
     duration: number,
     details: string,
     recurring: boolean
   ) {
     super(classId, objectId, label)
 
-    this.startTime = startTime
+    this.occursFirst = occursFirst
     this.duration = duration
     this.details = details
-    this.endTime = this.calculateEndTime(this.startTime, this.duration)
+    this.endTime = this.calculateEndTime(this.occursFirst, this.duration)
     this.recurring = recurring
   }
 
@@ -34,16 +34,40 @@ export class Appointment extends CalendarEvent {
   }
 
   public isOccuringOn(dateTime: DateTime): boolean {
-    return dateTime.isBetween(this.startTime, this.endTime)
+    return dateTime.isBetween(this.occursFirst, this.endTime)
   }
 
-  private calculateEndTime(startTime, duration): DateTime {
-    const dateString = DateTime.dateTimeToStringNumber(this.startTime)
+  private calculateEndTime(occursFirst, duration): DateTime {
+    const dateString = DateTime.dateTimeToStringNumber(this.occursFirst)
 
     const minutes = Number.parseInt(dateString.slice(-2) + this.duration)
 
-    DateTime.stringNumberToDateTime(DateTime.dateTimeToStringNumber(this.startTime) + this.duration)
+    DateTime.stringNumberToDateTime(DateTime.dateTimeToStringNumber(this.occursFirst) + this.duration)
 
     return new DateTime(new Date(), 2, minutes)
+  }
+
+  public getClassId(): ClassId {
+    return super.getClassId()
+  }
+
+  public getObjectId(): ObjectId {
+    return super.getObjectId()
+  }
+
+  public getLabel(): string {
+    return super.getLabel()
+  }
+
+  public getOccursFirst(): DateTime {
+    return this.occursFirst
+  }
+
+  public getDurationMinutes(): number {
+    return this.duration
+  }
+  
+  public getDetails(): string {
+    return this.details
   }
 }

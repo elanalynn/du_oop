@@ -1,27 +1,13 @@
-// Java Example
-// public class PeriodicAppointment extends Appointment {
-//   public PeriodicAppointment (
-//     ObjectId objectId,
-//     String label,
-//     DateTime firstOccurs,
-//     int durationMinutes,
-//     DateTime notToExceedDateTime,
-//     int periodHours,
-//     String details
-//   ) {
-//     super ( new ClassId( “PeriodicAppointment”), objectId, label );
-//   }
-//   …
-// }
-
 import { Appointment } from './Appointment'
 import { ClassId } from './ClassId'
 import { ObjectId } from './ObjectId'
 import { DateTime } from './DateTime'
 
 export class PeriodicAppointment extends Appointment {
+  private notToExceedDateTime: DateTime
+  private periodicHours: number
+
   constructor(
-    classId: ClassId,
     objectId: ObjectId,
     label: string,
     occursFirst: DateTime,
@@ -31,6 +17,41 @@ export class PeriodicAppointment extends Appointment {
     details: string,
     recurring: boolean
    ) {
-     super(classId, objectId, label, occursFirst, durationMinutes, details, recurring)
-   }
+    super(new ClassId('PeriodicAppointment'), objectId, label, occursFirst, durationMinutes, details, recurring)
+
+    this.notToExceedDateTime = notToExceedDateTime
+    this.periodicHours = periodicHours
+  }
+
+  public getClassId(): ClassId {
+    return super.getClassId()
+  }
+
+  public getObjectId(): ObjectId {
+    return super.getObjectId()
+  }
+
+  public getLabel(): string {
+    return super.getLabel()
+  }
+
+  public getOccursFirst(): DateTime {
+    return super.getOccursFirst()
+  }
+
+  public getDurationMinutes(): number {
+    return super.getDurationMinutes()
+  }
+
+  public getNotToExceedDateTime(): DateTime {
+    return this.notToExceedDateTime
+  }
+
+  public getPeriodicHours(): number {
+    return this.periodicHours
+  }
+
+  public getDetails(): string {
+    return super.getDetails()
+  }
 }

@@ -13,19 +13,18 @@ describe('PeriodicAppointment', () => {
   let periodicAppointment
 
   beforeEach(() => {
-    classId = new ClassId('periodicAppointment')
+    classId = new ClassId('PeriodicAppointment')
     objectId = new ObjectId()
     occursFirst = new DateTime()
     notToExceedDateTime = new DateTime()
     periodicAppointment = new PeriodicAppointment(
-      classId,
       objectId,
-      'appointment',
+      'appointment label',
       occursFirst,
       30,
       notToExceedDateTime,
       2,
-      'dance lesson',
+      'dance lesson details',
       true
     )
   })

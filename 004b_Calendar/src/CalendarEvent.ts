@@ -16,4 +16,16 @@ export abstract class CalendarEvent {
   abstract isRecurring(): boolean
 
   abstract isOccuringOn(date: DateTime): boolean
+
+  public getClassId(): ClassId {
+    return this.classId
+  }
+
+  public getObjectId(): ObjectId {
+    return this.objectId
+  }
+
+  public getLabel(): string {
+    return this.label
+  }
 }
