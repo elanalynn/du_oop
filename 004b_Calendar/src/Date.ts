@@ -4,31 +4,6 @@ import { Comparable } from './interfaces/Comparable'
 import { Month } from './enums/Month'
 import { DayOfWeek } from './enums/DayOfWeek'
 
-// export enum Month {
-//   JANUARY,
-//   FEBRUARY,
-//   MARCH,
-//   APRIL,
-//   MAY,
-//   JUNE,
-//   JULY,
-//   AUGUST,
-//   SEPTEMBER,
-//   OCTOBER,
-//   NOVEMBER,
-//   DECEMBER,
-// }
-
-// enum DayOfWeek {
-//   SUNDAY,
-//   MONDAY,
-//   TUESDAY,
-//   WEDNESDAY,
-//   THURSDAY,
-//   FRIDAY,
-//   SATURDAY
-// }
-
 export class Date implements Comparable<Date> {
   private day: number
   private month: Month

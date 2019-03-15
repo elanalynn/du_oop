@@ -12,6 +12,7 @@ describe('Contact', () => {
   let contact
 
   beforeEach(() => {
+    fs.writeFileSync('./spec/mocks/objectIds', '1,2', err => console.log('Error', err))
     classId = new ClassId('contact')
     objectId = new ObjectId('./spec/mocks/objectIds')
     contact = new Contact(classId, objectId)
@@ -26,11 +27,8 @@ describe('Contact', () => {
 
   describe('getObjectId', () => {
     it('gets the object id', () => {
-      fs.writeFileSync('./spec/mocks/objectIds', '1,2', err => {
-        if (err) throw err
-      })
       const id = contact.getObjectId().getId()
-      expect(id).to.equal(4)
+      expect(id).to.equal(3)
     })
   })
 })

@@ -14,7 +14,7 @@ describe('ObjectId', () => {
     it('gets the last class id that was set', () => {
       const result = objectId.getLastId('./spec/mocks/objectIds')
 
-      expect(result).to.equal('2')
+      expect(result).to.equal('3')
     })
   })
 })
