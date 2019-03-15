@@ -12,9 +12,9 @@ describe('ObjectId', () => {
     })
 
     it('gets the last class id that was set', () => {
-      const result = objectId.getLastId('./spec/mocks/mockIds')
+      const result = objectId.getLastId('./spec/mocks/objectIds')
 
-      expect(result).to.equal('6')
+      expect(result).to.equal('2')
     })
   })
 })

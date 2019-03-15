@@ -3,16 +3,15 @@ import { ClassId } from './ClassId'
 import { ObjectId } from './ObjectId'
 
 export class Contact extends DiaryProduct {
-
   constructor(classId: ClassId, objectId: ObjectId) {
     super(classId, objectId)
   }
 
   public getClassId(): ClassId {
-    return new ClassId('contact')
+    return super.getClassId()
   }
 
   public getObjectId(): ObjectId {
-    return new ObjectId()
+    return super.getObjectId()
   }
 }

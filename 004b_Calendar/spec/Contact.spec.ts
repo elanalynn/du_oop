@@ -4,6 +4,8 @@ import { Contact } from '../src/Contact'
 import { expect } from 'chai'
 import 'mocha'
 
+const fs = require('fs')
+
 describe('Contact', () => {
   let classId
   let objectId
@@ -11,21 +13,24 @@ describe('Contact', () => {
 
   beforeEach(() => {
     classId = new ClassId('contact')
-    objectId = new ObjectId()
+    objectId = new ObjectId('./spec/mocks/objectIds')
     contact = new Contact(classId, objectId)
   })
 
   describe('getClassId', () => {
     it('gets the class id', () => {
-      const result = true
-      expect(result).to.equal(true)
+      const id = contact.getClassId().getId()
+      expect(id).to.equal('contact')
     })
   })
 
   describe('getObjectId', () => {
     it('gets the object id', () => {
-      const result = true
-      expect(result).to.equal(true)
+      fs.writeFileSync('./spec/mocks/objectIds', '1,2', err => {
+        if (err) throw err
+      })
+      const id = contact.getObjectId().getId()
+      expect(id).to.equal(4)
     })
   })
 })

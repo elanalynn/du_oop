@@ -1,12 +1,3 @@
-// Java Example
-// public class DiaryProduct {
-//   public DiaryProduct ( ClassId classId, ObjectId objectId);
-//   public ClassId GetClassId();
-//   public ObjectId GetObjectId();
-//   private ClassId  mClassId;
-//   private ObjectId mObjectId;
-// }
-
 import { ClassId } from './ClassId'
 import { ObjectId } from './ObjectId'
 import { Date } from './Date'
@@ -22,10 +13,10 @@ export class DiaryProduct {
   }
 
   public getClassId(): ClassId {
-    return new ClassId('diaryProduct')
+    return this.classId
   }
 
   public getObjectId(): ObjectId {
-    return new ObjectId()
+    return this.objectId
   }
 }

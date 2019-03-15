@@ -1,11 +1,19 @@
 const fs = require('fs')
 
 export class ObjectId {
-  constructor() {
-    this.createId()
+  private id: number
+  private filePath: string
+
+  constructor(filePath = './db/objectId') {
+    this.filePath = filePath
+    this.setId()
+  }
+
+  public getId(): number {
+    return this.id
   }
   
-  public getLastId(filePath = './db/objectId'): number {
+  public getLastId(filePath = this.filePath): number {
     const data = fs.readFileSync(filePath, 'utf8', (err, data) => {
       if (err) throw err
       return data
@@ -13,14 +21,15 @@ export class ObjectId {
     return data.split(',').pop()
   }
 
-  private createId(): void {
+  private setId(): void {
     const lastId = this.getLastId()
     const nextId = +lastId + 1
+    this.id = nextId
     this.saveId(nextId)
   }
 
   private saveId(id): void {
-    fs.appendFile('./db/objectId', `,${+id}`, err => {
+    fs.appendFile(this.filePath, `,${+id}`, err => {
       if (err) throw err
     })
   }

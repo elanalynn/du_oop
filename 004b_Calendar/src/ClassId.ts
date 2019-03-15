@@ -10,6 +10,10 @@ export class ClassId {
     this.findOrCreateId(id, filePath)
   }
   
+  public getId(): string {
+    return this.id
+  }
+  
   public getLastId(filePath): string {
     const data = this.readFile(filePath)
     return data.split(',').pop()
